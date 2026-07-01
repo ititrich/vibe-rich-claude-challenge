@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 수익화 4주 챌린지 | 바이브리치</title>
+<meta name="description" content="Claude로 4주 만에 나만의 수익 파이프라인을 만드는 바이브리치 챌린지. 1주차 무료 공개.">
+
+<!-- Pretendard 폰트 CDN -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<style>
+/* =========================================
+   CSS 변수 (컬러 팔레트) - 여기서 색상/톤 쉽게 변경 가능
+========================================= */
+:root{
+  --bg-deep: #0a0e1a;
+  --bg-surface: #10162a;
+  --bg-card: #131a30;
+  --bg-card-hover: #17203c;
+  --border-subtle: rgba(255,255,255,0.08);
+  --border-glow: rgba(20,184,166,0.35);
+
+  --teal: #14b8a6;
+  --cyan: #22d3ee;
+  --amber: #f59e0b;
+
+  --grad-primary: linear-gradient(135deg, var(--teal), var(--cyan));
+  --grad-warm: linear-gradient(135deg, var(--amber), #fbbf24);
+  --grad-text: linear-gradient(135deg, #ffffff 0%, #a7f3ec 50%, var(--cyan) 100%);
+
+  --text-primary: #f4f6fb;
+  --text-secondary: #b7c0d8;
+  --text-muted: #7b87a8;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  --shadow-glow-teal: 0 0 40px rgba(20,184,166,0.25);
+  --shadow-glow-amber: 0 0 40px rgba(245,158,11,0.2);
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.35);
+
+  --font-main: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family: var(--font-main);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(20,184,166,0.10), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(34,211,238,0.08), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(245,158,11,0.06), transparent 40%);
+}
+
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+button{ font-family:inherit; cursor:pointer; border:none; }
+input, select{ font-family:inherit; }
+
+.container{
+  width:100%;
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 20px;
+}
+
+.section{
+  padding:88px 0;
+  opacity:0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.section.visible{
+  opacity:1;
+  transform: translateY(0);
+}
+
+.section-label{
+  display:inline-block;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  color: var(--cyan);
+  background: rgba(34,211,238,0.08);
+  border:1px solid rgba(34,211,238,0.25);
+  padding:6px 14px;
+  border-radius:999px;
+  margin-bottom:18px;
+}
+
+.section-title{
+  font-size: clamp(24px, 4.5vw, 36px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  margin-bottom:14px;
+  color: var(--text-primary);
+}
+
+.section-sub{
+  font-size: clamp(14px, 2vw, 17px);
+  color: var(--text-secondary);
+  margin-bottom:48px;
+  max-width:640px;
+}
+
+.text-center{ text-align:center; }
+.mx-auto{ margin-left:auto; margin-right:auto; }
+
+/* =========================================
+   버튼 공통 스타일
+========================================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:16px 32px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  white-space:nowrap;
+}
+.btn-primary{
+  background: var(--grad-primary);
+  color: #04140f;
+  box-shadow: var(--shadow-glow-teal);
+}
+.btn-primary:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 0 55px rgba(20,184,166,0.45);
+  filter: brightness(1.06);
+}
+.btn-outline{
+  background: transparent;
+  border:1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+.btn-outline:hover{
+  border-color: var(--border-glow);
+  background: rgba(20,184,166,0.08);
+}
+.btn-block{ width:100%; }
+
+/* =========================================
+   1. 헤더 / 네비게이션
+========================================= */
+.site-header{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:100;
+  background: rgba(10,14,26,0.72);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid var(--border-subtle);
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+}
+.logo{
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:-0.01em;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.logo span{
+  background: var(--grad-primary);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.header-cta{
+  padding:10px 20px;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+/* =========================================
+   2. 히어로 섹션
+========================================= */
+.hero{
+  padding:150px 0 90px;
+  opacity:1;
+  transform:none;
+  position:relative;
+}
+.hero-badges{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:26px;
+}
+.badge{
+  font-size:13px;
+  font-weight:700;
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+.badge.badge-free{
+  color: #04140f;
+  background: var(--grad-warm);
+  border:none;
+  box-shadow: var(--shadow-glow-amber);
+}
+.badge.badge-outline{
+  color: var(--cyan);
+  border-color: rgba(34,211,238,0.3);
+}
+
+.hero-title{
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight:900;
+  letter-spacing:-0.03em;
+  line-height:1.2;
+  max-width:760px;
+  background: var(--grad-text);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  margin-bottom:22px;
+}
+.hero-sub{
+  font-size: clamp(15px, 2.4vw, 19px);
+  color: var(--text-secondary);
+  max-width:600px;
+  margin-bottom:40px;
+}
+.hero-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.hero-note{
+  margin-top:16px;
+  font-size:13px;
+  color: var(--text-muted);
+}
+
+/* =========================================
+   3. 이런 분께 추천 섹션
+========================================= */
+.audience-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap:20px;
+}
+.audience-card{
+  background: var(--bg-card);
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding:28px 24px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.audience-card:hover{
+  transform: translateY(-6px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-card);
+}
+.audience-icon{
+  font-size:28px;
+  margin-bottom:16px;
+}
+.audience-card p{
+  font-size:15px;
+  color: var(--text-secondary);
+  font-weight:500;
+}
+
+/* =========================================
+   4. 이 챌린지가 특별한 이유
+========================================= */
+.reason-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap:24px;
+}
+.reason-card{
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-surface));
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding:32px 26px;
+  position:relative;
+  overflow:hidden;
+}
+.reason-card::before{
+  content:'';
+  position:absolute;
+  top:-40%; right:-40%;
+  width:200px; height:200px;
+  background: radial-gradient(circle, rgba(20,184,166,0.18), transparent 70%);
+  pointer-events:none;
+}
+.reason-num{
+  font-size:14px;
+  font-weight:800;
+  color: var(--teal);
+  margin-bottom:14px;
+  letter-spacing:0.05em;
+}
+.reason-card h3{
+  font-size:19px;
+  font-weight:800;
+  margin-bottom:10px;
+  color: var(--text-primary);
+}
+.reason-card p{
+  font-size:14.5px;
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   5. 커리큘럼 섹션 (타임라인)
+========================================= */
+.curriculum-timeline{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.week-card{
+  background: var(--bg-card);
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding:30px 28px;
+  position:relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.week-card:hover{
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-card);
+}
+.week-card.free{
+  border-color: rgba(245,158,11,0.4);
+  background: linear-gradient(160deg, rgba(245,158,11,0.07), var(--bg-card) 55%);
+}
+.week-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:8px;
+}
+.week-title-group{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.week-num{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:0.06em;
+  color: var(--cyan);
+}
+.week-name{
+  font-size:20px;
+  font-weight:800;
+  color: var(--text-primary);
+}
+.week-tag{
+  font-size:12px;
+  font-weight:800;
+  padding:5px 12px;
+  border-radius:999px;
+}
+.week-tag.free{
+  background: var(--grad-warm);
+  color:#04140f;
+}
+.week-tag.paid{
+  background: rgba(255,255,255,0.08);
+  color: var(--text-secondary);
+  border:1px solid var(--border-subtle);
+}
+.week-duration{
+  font-size:13px;
+  color: var(--text-muted);
+  font-weight:600;
+}
+.week-list{
+  margin:18px 0 16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.week-list li{
+  font-size:14.5px;
+  color: var(--text-secondary);
+  padding-left:22px;
+  position:relative;
+}
+.week-list li::before{
+  content:'';
+  position:absolute;
+  left:0; top:8px;
+  width:7px; height:7px;
+  border-radius:50%;
+  background: var(--grad-primary);
+}
+.week-result{
+  font-size:13.5px;
+  font-weight:700;
+  color: var(--teal);
+  background: rgba(20,184,166,0.08);
+  border:1px solid rgba(20,184,166,0.25);
+  border-radius: var(--radius-sm);
+  padding:12px 16px;
+  margin-top:6px;
+}
+.week-result span{
+  color: var(--text-muted);
+  font-weight:500;
+}
+
+/* =========================================
+   6. 진행 방식 섹션
+========================================= */
+.process-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:20px;
+}
+.process-card{
+  text-align:center;
+  background: var(--bg-card);
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding:30px 20px;
+}
+.process-icon{
+  font-size:30px;
+  margin-bottom:14px;
+}
+.process-card h4{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.process-card p{
+  font-size:13.5px;
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   7. 가격/신청 안내 섹션
+========================================= */
+.pricing-flow{
+  display:flex;
+  align-items:stretch;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:36px;
+}
+.pricing-step{
+  flex:1;
+  min-width:220px;
+  background: var(--bg-card);
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding:26px 22px;
+  position:relative;
+}
+.pricing-step.highlight{
+  border-color: rgba(245,158,11,0.45);
+  background: linear-gradient(160deg, rgba(245,158,11,0.08), var(--bg-card));
+}
+.pricing-step-num{
+  width:32px; height:32px;
+  border-radius:50%;
+  background: var(--grad-primary);
+  color:#04140f;
+  font-weight:800;
+  font-size:14px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:14px;
+}
+.pricing-step h4{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.pricing-step p{
+  font-size:13.5px;
+  color: var(--text-secondary);
+}
+.pricing-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: var(--text-muted);
+  font-size:20px;
+  padding:0 4px;
+}
+.pricing-note-box{
+  background: var(--bg-surface);
+  border:1px dashed var(--border-glow);
+  border-radius: var(--radius-md);
+  padding:22px 26px;
+  text-align:center;
+  font-size:14.5px;
+  color: var(--text-secondary);
+}
+.pricing-note-box strong{
+  color: var(--amber);
+}
+
+/* =========================================
+   8. 신청 폼 섹션
+========================================= */
+.apply-section{
+  background: var(--bg-surface);
+  border-top:1px solid var(--border-subtle);
+  border-bottom:1px solid var(--border-subtle);
+}
+.apply-box{
+  max-width:560px;
+  margin:0 auto;
+  background: var(--bg-card);
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding:40px 32px;
+  box-shadow: var(--shadow-card);
+}
+.form-group{
+  margin-bottom:20px;
+}
+.form-group label{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:8px;
+  color: var(--text-primary);
+}
+.form-group label .required{
+  color: var(--amber);
+  margin-left:2px;
+}
+.form-control{
+  width:100%;
+  padding:13px 16px;
+  background: var(--bg-deep);
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size:15px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.form-control:focus{
+  outline:none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(20,184,166,0.18);
+}
+.form-control.error{
+  border-color:#ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.15);
+}
+.error-msg{
+  display:none;
+  font-size:12.5px;
+  color:#f87171;
+  margin-top:6px;
+}
+.error-msg.show{ display:block; }
+
+.radio-group{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.radio-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor:pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  font-size:14px;
+  color: var(--text-secondary);
+}
+.radio-option:hover{
+  border-color: var(--border-glow);
+}
+.radio-option input{
+  accent-color: var(--teal);
+  width:16px; height:16px;
+}
+.radio-option.selected{
+  border-color: var(--teal);
+  background: rgba(20,184,166,0.08);
+  color: var(--text-primary);
+}
+
+.level-group{
+  display:flex;
+  gap:10px;
+}
+.level-option{
+  flex:1;
+  text-align:center;
+  padding:12px 8px;
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  cursor:pointer;
+  font-size:13.5px;
+  font-weight:700;
+  color: var(--text-secondary);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.level-option:hover{
+  border-color: var(--border-glow);
+}
+.level-option.selected{
+  border-color: var(--teal);
+  background: rgba(20,184,166,0.1);
+  color: var(--teal);
+}
+.level-option input{ display:none; }
+
+.form-success{
+  display:none;
+  text-align:center;
+  padding:30px 10px;
+}
+.form-success.show{ display:block; }
+.form-success .check{
+  width:60px; height:60px;
+  border-radius:50%;
+  background: var(--grad-primary);
+  display:flex; align-items:center; justify-content:center;
+  font-size:28px;
+  margin:0 auto 18px;
+  box-shadow: var(--shadow-glow-teal);
+}
+.form-success h3{
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.form-success p{
+  color: var(--text-secondary);
+  font-size:14.5px;
+}
+.apply-form.hidden{ display:none; }
+
+/* =========================================
+   9. FAQ 섹션 (아코디언)
+========================================= */
+.faq-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.faq-item{
+  background: var(--bg-card);
+  border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow:hidden;
+}
+.faq-question{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  padding:20px 24px;
+  background:transparent;
+  color: var(--text-primary);
+  font-size:15.5px;
+  font-weight:700;
+  text-align:left;
+  gap:16px;
+}
+.faq-icon{
+  flex-shrink:0;
+  width:26px; height:26px;
+  border-radius:50%;
+  border:1px solid var(--border-subtle);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+  color: var(--teal);
+  transition: transform 0.3s ease;
+}
+.faq-item.open .faq-icon{
+  transform: rotate(45deg);
+  border-color: var(--teal);
+}
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding:0 24px;
+}
+.faq-item.open .faq-answer{
+  max-height:200px;
+  padding:0 24px 22px;
+}
+.faq-answer p{
+  font-size:14.5px;
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   10. 최종 CTA + 푸터
+========================================= */
+.final-cta{
+  text-align:center;
+  padding:100px 0 80px;
+  background: radial-gradient(circle at 50% 30%, rgba(20,184,166,0.14), transparent 60%);
+}
+.final-cta h2{
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight:900;
+  margin-bottom:18px;
+  background: var(--grad-text);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.final-cta p{
+  color: var(--text-secondary);
+  margin-bottom:32px;
+  font-size:15.5px;
+}
+
+.site-footer{
+  border-top:1px solid var(--border-subtle);
+  padding:36px 0;
+  text-align:center;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+}
+.footer-links a{
+  font-size:13.5px;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+.footer-links a:hover{ color: var(--teal); }
+.footer-copy{
+  font-size:12.5px;
+  color: var(--text-muted);
+}
+
+/* =========================================
+   반응형 (모바일 우선 - 데스크톱에서 조정)
+========================================= */
+@media (max-width: 640px){
+  .section{ padding:64px 0; }
+  .hero{ padding:120px 0 60px; }
+  .hero-actions{ flex-direction:column; align-items:stretch; }
+  .btn{ width:100%; }
+  .pricing-flow{ flex-direction:column; }
+  .pricing-arrow{ transform: rotate(90deg); }
+  .apply-box{ padding:28px 20px; }
+  .level-group{ flex-direction:column; }
+}
+
+@media (min-width: 641px){
+  .curriculum-timeline{ padding-left:4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================
+     헤더 / 네비게이션
+========================================= -->
+<header class="site-header">
+  <div class="container">
+    <div class="logo">바이브<span>리치</span></div>
+    <a href="#apply" class="btn btn-primary header-cta">무료 신청</a>
+  </div>
+</header>
+
+<!-- =========================================
+     1. 히어로 섹션
+========================================= -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badges">
+      <span class="badge badge-free">1주차 무료 공개</span>
+      <span class="badge badge-outline">주 1회 2시간 · 총 4주</span>
+    </div>
+    <h1 class="hero-title">Claude로 4주 만에<br>나만의 수익 파이프라인 만들기</h1>
+    <p class="hero-sub">웹앱 제작 · 콘텐츠 자동화 · 콘텐츠 판매 · 업무 자동화 — 4가지 수익화를 직접 만들어봅니다</p>
+    <div class="hero-actions">
+      <a href="#apply" class="btn btn-primary" id="heroCta">무료로 신청하기</a>
+      <a href="#curriculum" class="btn btn-outline">커리큘럼 보기</a>
+    </div>
+    <p class="hero-note">신용카드 등록 없이 1주차 라이브에 바로 참여할 수 있습니다.</p>
+  </div>
+</section>
+
+<!-- =========================================
+     2. 이런 분께 추천 섹션
+========================================= -->
+<section class="section" id="audience">
+  <div class="container">
+    <span class="section-label">FOR WHO</span>
+    <h2 class="section-title">이런 분께 추천드려요</h2>
+    <p class="section-sub">AI를 도구가 아니라 수익으로 연결하고 싶은 분들을 위해 설계했습니다.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">🧭</div>
+        <p>AI로 수익을 내고 싶지만 어디서 시작할지 모르는 분</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">🛠️</div>
+        <p>만들 줄은 아는데 파는 법을 모르는 분</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">🚀</div>
+        <p>부업/본업 전환을 실제로 만들고 싶은 분</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">🤖</div>
+        <p>Claude를 제대로 써본 적 없지만 지금 시작하고 싶은 분</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     4. 이 챌린지가 특별한 이유
+========================================= -->
+<section class="section" id="why">
+  <div class="container">
+    <span class="section-label">WHY THIS CHALLENGE</span>
+    <h2 class="section-title">이 챌린지가 특별한 이유</h2>
+    <p class="section-sub">단순 강의가 아니라, 결과물과 매출까지 설계된 4주입니다.</p>
+    <div class="reason-grid">
+      <div class="reason-card">
+        <div class="reason-num">01</div>
+        <h3>1주차 완전 무료</h3>
+        <p>4가지 수익화를 다 맛본 뒤, 나에게 맞는 방향을 직접 결정할 수 있습니다.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">02</div>
+        <h3>만들기 절반, 팔기 절반</h3>
+        <p>제작 실습에서 끝나지 않고, 실제 매출까지 설계된 커리큘럼으로 진행됩니다.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">03</div>
+        <h3>매주 결과물 인증</h3>
+        <p>완주율이 곧 성과율입니다. 매주 실습 결과물을 인증하며 앞으로 나아갑니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     5. 4주 커리큘럼 섹션
+========================================= -->
+<section class="section" id="curriculum">
+  <div class="container">
+    <span class="section-label">CURRICULUM</span>
+    <h2 class="section-title">4주 커리큘럼</h2>
+    <p class="section-sub">매주 2시간 라이브로 진행되며, 1주차는 무료로 공개됩니다.</p>
+
+    <div class="curriculum-timeline">
+
+      <!-- 1주차 -->
+      <div class="week-card free">
+        <div class="week-head">
+          <div class="week-title-group">
+            <span class="week-num">WEEK 1</span>
+            <span class="week-name">4가지 다 맛본다</span>
+            <span class="week-tag free">무료 공개</span>
+          </div>
+          <span class="week-duration">2시간 라이브</span>
+        </div>
+        <ul class="week-list">
+          <li>Claude 워크플로우 세팅</li>
+          <li>바이브코딩 라이브 실습 — 웹앱 1개 함께 만들어 배포 (각자 URL 확보)</li>
+          <li>콘텐츠 자동화 · 콘텐츠 판매 · 업무 자동화 3축 데모 + 복붙 템플릿 제공</li>
+          <li>나의 수익화 방향 진단</li>
+        </ul>
+        <div class="week-result"><span>결과물 —</span> 배포된 웹앱 URL 1개 + 3축 실습 템플릿</div>
+      </div>
+
+      <!-- 2주차 -->
+      <div class="week-card">
+        <div class="week-head">
+          <div class="week-title-group">
+            <span class="week-num">WEEK 2</span>
+            <span class="week-name">팔리는 걸 만든다</span>
+            <span class="week-tag paid">유료</span>
+          </div>
+          <span class="week-duration">2시간 라이브</span>
+        </div>
+        <ul class="week-list">
+          <li>팔리는 아이템 선정 — 수요 검증·니치 찾기</li>
+          <li>축별 핵심 제작 라이브 (웹앱 / 콘텐츠 시스템 / 상품 구성 / 자동화 설계)</li>
+          <li>수익화 장치 붙이기 — 결제·구독·유료화 (토스 / Stripe / Gumroad)</li>
+        </ul>
+        <div class="week-result"><span>결과물 —</span> 확정된 판매 아이템 + 돈 받을 수 있는 MVP</div>
+      </div>
+
+      <!-- 3주차 -->
+      <div class="week-card">
+        <div class="week-head">
+          <div class="week-title-group">
+            <span class="week-num">WEEK 3</span>
+            <span class="week-name">실제로 판다</span>
+            <span class="week-tag paid">유료</span>
+          </div>
+          <span class="week-duration">2시간 라이브</span>
+        </div>
+        <ul class="week-list">
+          <li>가격 설계 + 판매 채널 전략</li>
+          <li>판매 페이지·포트폴리오 라이브 제작 (Claude로 카피 생성)</li>
+          <li>첫 고객 확보 실전 — 크몽/숨고/커뮤니티/콜드 아웃리치 (라이브에서 실제 발송)</li>
+          <li>유입 자동화 — SNS·유튜브·SEO</li>
+        </ul>
+        <div class="week-result"><span>결과물 —</span> 판매 페이지 + 제안 발송 시작 + 첫 리드/첫 결제</div>
+      </div>
+
+      <!-- 4주차 -->
+      <div class="week-card">
+        <div class="week-head">
+          <div class="week-title-group">
+            <span class="week-num">WEEK 4</span>
+            <span class="week-name">반복·자동화해서 스케일</span>
+            <span class="week-tag paid">유료</span>
+          </div>
+          <span class="week-duration">2시간 라이브</span>
+        </div>
+        <ul class="week-list">
+          <li>시스템화 — 템플릿·재사용으로 제작 속도 10배</li>
+          <li>크로스 축 결합 (웹앱 + 콘텐츠 자동화 등)</li>
+          <li>단가 올리기·재구매 설계</li>
+          <li>월 300 로드맵 — 30일 실행 계획서 라이브 작성</li>
+        </ul>
+        <div class="week-result"><span>결과물 —</span> 30일 실행 계획서 + 성과 인증</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     6. 진행 방식 섹션
+========================================= -->
+<section class="section" id="process">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">진행 방식</h2>
+    <p class="section-sub">바쁜 일상 속에서도 꾸준히 따라올 수 있도록 설계했습니다.</p>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-icon">🗓️</div>
+        <h4>주 1회 라이브</h4>
+        <p>회당 2시간, 온라인으로 진행됩니다.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-icon">🎥</div>
+        <h4>녹화본 제공</h4>
+        <p>라이브 녹화본으로 언제든 복습 가능합니다.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-icon">💬</div>
+        <h4>매주 결과물 인증</h4>
+        <p>단톡방/디스코드에서 매주 인증하며 함께 완주합니다.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-icon">📆</div>
+        <h4>총 4주 과정</h4>
+        <p>1주차 무료 체험 후 3주간 심화 과정으로 이어집니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     7. 가격/신청 안내 섹션
+========================================= -->
+<section class="section" id="pricing">
+  <div class="container">
+    <span class="section-label">HOW TO JOIN</span>
+    <h2 class="section-title">1주차는 무료로 참여하세요</h2>
+    <p class="section-sub">2주차부터 유료 챌린지로 전환됩니다. 부담 없이 먼저 경험해보세요.</p>
+
+    <div class="pricing-flow">
+      <div class="pricing-step">
+        <div class="pricing-step-num">1</div>
+        <h4>무료 신청</h4>
+        <p>아래 폼 작성 후 카드 등록 없이 바로 신청 완료.</p>
+      </div>
+      <div class="pricing-arrow">→</div>
+      <div class="pricing-step">
+        <div class="pricing-step-num">2</div>
+        <h4>1주차 무료 체험</h4>
+        <p>4가지 수익화 축을 라이브로 직접 경험합니다.</p>
+      </div>
+      <div class="pricing-arrow">→</div>
+      <div class="pricing-step highlight">
+        <div class="pricing-step-num">3</div>
+        <h4>유료 전환 결정</h4>
+        <p>본인이 직접 판단 후 2~4주차 참여 여부를 결정합니다.</p>
+      </div>
+    </div>
+
+    <div class="pricing-note-box">
+      <strong>유료 안내는 1주차 종료 후 개별 안내</strong>드립니다. 1주차 체험 전에는 가격에 대해 걱정하지 않으셔도 됩니다.
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     8. 신청 폼 섹션
+========================================= -->
+<section class="section apply-section" id="apply">
+  <div class="container">
+    <span class="section-label">APPLY NOW</span>
+    <h2 class="section-title">무료 챌린지 신청하기</h2>
+    <p class="section-sub">1주차 무료 라이브에 참여할 정보를 입력해주세요.</p>
+
+    <div class="apply-box">
+      <!-- 신청 폼 -->
+      <form class="apply-form" id="applyForm" novalidate>
+        <div class="form-group">
+          <label for="name">이름<span class="required">*</span></label>
+          <input type="text" id="name" class="form-control" placeholder="홍길동" autocomplete="name">
+          <p class="error-msg" id="nameError">이름을 입력해주세요.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="email">이메일<span class="required">*</span></label>
+          <input type="email" id="email" class="form-control" placeholder="you@example.com" autocomplete="email">
+          <p class="error-msg" id="emailError">올바른 이메일 형식을 입력해주세요.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">연락처 (선택)</label>
+          <input type="tel" id="phone" class="form-control" placeholder="010-0000-0000" autocomplete="tel">
+        </div>
+
+        <div class="form-group">
+          <label>가장 관심 있는 수익화 축<span class="required">*</span></label>
+          <div class="radio-group" id="interestGroup">
+            <label class="radio-option">
+              <input type="radio" name="interest" value="바이브코딩">
+              바이브코딩 (웹앱 제작)
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="interest" value="콘텐츠 자동화">
+              콘텐츠 자동화
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="interest" value="콘텐츠 판매">
+              콘텐츠 판매
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="interest" value="업무 자동화">
+              업무 자동화
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="interest" value="아직 모름">
+              아직 모름
+            </label>
+          </div>
+          <p class="error-msg" id="interestError">관심 있는 수익화 축을 선택해주세요.</p>
+        </div>
+
+        <div class="form-group">
+          <label>AI 수익화 경험 수준<span class="required">*</span></label>
+          <div class="level-group" id="levelGroup">
+            <label class="level-option">
+              <input type="radio" name="level" value="입문">입문
+            </label>
+            <label class="level-option">
+              <input type="radio" name="level" value="초급">초급
+            </label>
+            <label class="level-option">
+              <input type="radio" name="level" value="중급">중급
+            </label>
+          </div>
+          <p class="error-msg" id="levelError">경험 수준을 선택해주세요.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">무료 챌린지 신청하기</button>
+      </form>
+
+      <!-- 제출 성공 메시지 -->
+      <div class="form-success" id="formSuccess">
+        <div class="check">✓</div>
+        <h3>신청이 완료되었습니다!</h3>
+        <p>1주차 라이브 참여 안내를 이메일로 보내드릴게요.<br>바이브리치와 함께 4주를 시작해봐요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     9. FAQ 섹션
+========================================= -->
+<section class="section" id="faq">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          코딩을 전혀 몰라도 되나요?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>네, Claude가 코드를 대신 짜줍니다. 이 챌린지에서는 코드를 직접 작성하는 법이 아니라, Claude에게 정확하게 지시하는 법을 배웁니다.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          정말 1주 만에 매출이 나나요?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>2주차부터 실제 판매를 시작하며, 첫 매출/첫 리드가 목표입니다. 월 300은 챌린지 이후 반복 실행 시 도달하는 목표로, 4주차에 함께 로드맵을 설계합니다.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          주 1회면 따라갈 수 있나요?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>네, 라이브 2시간 + 녹화본 + 매주 과제로 설계돼 있어 바쁜 분들도 무리 없이 따라올 수 있습니다.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          1주차 무료 이후 꼭 유료로 가야 하나요?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>아니요. 1주차만 참여해도 됩니다. 1주차를 경험한 뒤 본인이 직접 판단하여 유료 전환 여부를 결정할 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     10. 최종 CTA
+========================================= -->
+<section class="final-cta">
+  <div class="container">
+    <h2>지금 무료로 시작하세요</h2>
+    <p>1주차 라이브, 신용카드 등록 없이 바로 참여할 수 있습니다.</p>
+    <a href="#apply" class="btn btn-primary" id="finalCta">지금 무료로 시작하세요</a>
+  </div>
+</section>
+
+<!-- =========================================
+     푸터
+========================================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#" target="_blank" rel="noopener">바이브리치 유튜브 채널</a>
+      <a href="#curriculum">커리큘럼</a>
+      <a href="#faq">FAQ</a>
+      <a href="#apply">신청하기</a>
+    </div>
+    <p class="footer-copy">© 2026 바이브리치(Vibe Rich). All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* =========================================
+   스크롤 페이드인 애니메이션
+========================================= */
+(function initScrollAnimation(){
+  var sections = document.querySelectorAll('.section');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  sections.forEach(function(s){ observer.observe(s); });
+})();
+
+/* =========================================
+   FAQ 아코디언
+========================================= */
+(function initFaqAccordion(){
+  var items = document.querySelectorAll('.faq-item');
+  items.forEach(function(item){
+    var question = item.querySelector('.faq-question');
+    question.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      items.forEach(function(i){ i.classList.remove('open'); });
+      if(!isOpen){ item.classList.add('open'); }
+    });
+  });
+})();
+
+/* =========================================
+   라디오/레벨 선택 시 하이라이트 스타일
+========================================= */
+(function initSelectableGroups(){
+  function bindGroup(groupSelector, optionSelector){
+    var group = document.querySelector(groupSelector);
+    if(!group) return;
+    var options = group.querySelectorAll(optionSelector);
+    options.forEach(function(opt){
+      var input = opt.querySelector('input');
+      input.addEventListener('change', function(){
+        options.forEach(function(o){ o.classList.remove('selected'); });
+        opt.classList.add('selected');
+      });
+    });
+  }
+  bindGroup('#interestGroup', '.radio-option');
+  bindGroup('#levelGroup', '.level-option');
+})();
+
+/* =========================================
+   신청 폼 유효성 검사 + 제출 처리
+========================================= */
+(function initApplyForm(){
+  var form = document.getElementById('applyForm');
+  var successBox = document.getElementById('formSuccess');
+
+  function isValidEmail(email){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function showError(inputEl, errorId, show){
+    var errorEl = document.getElementById(errorId);
+    if(!errorEl) return;
+    if(show){
+      inputEl && inputEl.classList.add('error');
+      errorEl.classList.add('show');
+    } else {
+      inputEl && inputEl.classList.remove('error');
+      errorEl.classList.remove('show');
+    }
+  }
+
+  function validateForm(data){
+    var valid = true;
+
+    if(!data.name){
+      showError(document.getElementById('name'), 'nameError', true);
+      valid = false;
+    } else {
+      showError(document.getElementById('name'), 'nameError', false);
+    }
+
+    if(!data.email || !isValidEmail(data.email)){
+      showError(document.getElementById('email'), 'emailError', true);
+      valid = false;
+    } else {
+      showError(document.getElementById('email'), 'emailError', false);
+    }
+
+    if(!data.interest){
+      showError(null, 'interestError', true);
+      valid = false;
+    } else {
+      showError(null, 'interestError', false);
+    }
+
+    if(!data.level){
+      showError(null, 'levelError', true);
+      valid = false;
+    } else {
+      showError(null, 'levelError', false);
+    }
+
+    return valid;
+  }
+
+  // 실제 전송 로직을 담당하는 함수 (추후 백엔드/서드파티 서비스 연동 지점)
+  function submitApplication(data){
+    // TODO: 여기에 실제 전송 로직 연결
+    // 예시 1) Formspree 연동 (무료 폼 서비스):
+    //
+    // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    //   body: JSON.stringify(data)
+    // })
+    //   .then(function(res){ if(!res.ok) throw new Error('전송 실패'); })
+    //   .catch(function(err){ console.error(err); });
+    //
+    // 예시 2) 구글 스프레드시트 연동 (Google Apps Script 웹앱 배포 URL 사용):
+    //
+    // fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+    //   method: 'POST',
+    //   mode: 'no-cors',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // });
+    //
+    // 예시 3) 이메일 발송 (EmailJS 등 클라이언트 이메일 서비스 사용 가능)
+
+    console.log('신청 데이터:', data);
+    return Promise.resolve({ ok: true });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var interestInput = form.querySelector('input[name="interest"]:checked');
+    var levelInput = form.querySelector('input[name="level"]:checked');
+
+    var data = {
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      interest: interestInput ? interestInput.value : '',
+      level: levelInput ? levelInput.value : '',
+      submittedAt: new Date().toISOString()
+    };
+
+    if(!validateForm(data)) return;
+
+    submitApplication(data).then(function(result){
+      if(result.ok){
+        form.classList.add('hidden');
+        successBox.classList.add('show');
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

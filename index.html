@@ -1101,6 +1101,7 @@ input, select{ font-family:inherit; }
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">무료 챌린지 신청하기</button>
+        <p class="error-msg" id="submitError">전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</p>
       </form>
 
       <!-- 제출 성공 메시지 -->
@@ -1296,32 +1297,29 @@ input, select{ font-family:inherit; }
     return valid;
   }
 
-  // 실제 전송 로직을 담당하는 함수 (추후 백엔드/서드파티 서비스 연동 지점)
+  // 실제 전송 로직을 담당하는 함수 (Google Apps Script 웹앱을 통해 구글 스프레드시트에 저장)
+  var SHEET_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyUOJ-EW54exnmdfDwUMsPAP7zn2JXI1LGaTyjer8EzT0iUwP5gu7jzQevadMbWTJ5y/exec';
+
   function submitApplication(data){
-    // TODO: 여기에 실제 전송 로직 연결
-    // 예시 1) Formspree 연동 (무료 폼 서비스):
-    //
+    // 다른 서비스로 교체하려면 아래 예시 참고
+    // 예시) Formspree 연동:
     // fetch('https://formspree.io/f/YOUR_FORM_ID', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     //   body: JSON.stringify(data)
-    // })
-    //   .then(function(res){ if(!res.ok) throw new Error('전송 실패'); })
-    //   .catch(function(err){ console.error(err); });
-    //
-    // 예시 2) 구글 스프레드시트 연동 (Google Apps Script 웹앱 배포 URL 사용):
-    //
-    // fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
-    //   method: 'POST',
-    //   mode: 'no-cors',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // });
-    //
-    // 예시 3) 이메일 발송 (EmailJS 등 클라이언트 이메일 서비스 사용 가능)
+    // }).then(function(res){ if(!res.ok) throw new Error('전송 실패'); });
 
-    console.log('신청 데이터:', data);
-    return Promise.resolve({ ok: true });
+    return fetch(SHEET_WEBAPP_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Apps Script 웹앱 응답은 읽을 수 없지만 요청 자체는 정상 전송됨
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function(){ return { ok: true }; })
+      .catch(function(err){
+        console.error('신청 저장 실패:', err);
+        return { ok: false };
+      });
   }
 
   form.addEventListener('submit', function(e){
@@ -1341,10 +1339,15 @@ input, select{ font-family:inherit; }
 
     if(!validateForm(data)) return;
 
+    var submitErrorEl = document.getElementById('submitError');
+    submitErrorEl.classList.remove('show');
+
     submitApplication(data).then(function(result){
       if(result.ok){
         form.classList.add('hidden');
         successBox.classList.add('show');
+      } else {
+        submitErrorEl.classList.add('show');
       }
     });
   });

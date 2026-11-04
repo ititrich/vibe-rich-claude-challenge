@@ -156,6 +156,25 @@
   .offer .later{color:#6b7280;font-size:15px !important;font-weight:700}
   .offer .bonus{margin-top:14px;background:#f3f7e6;border-radius:12px;padding:14px;font-size:15px}
   .zero{margin-top:22px;font-size:20px;font-weight:800}
+  .offer .price-box{text-align:right}
+  .offer .price-box b{display:block;color:var(--green-ink);font-size:28px;line-height:1.2}
+  .offer .price-box small{display:block;font-size:12.5px;font-weight:700;color:#b45309;margin-top:2px}
+  .offer .bonus.up{background:#fff4e5;margin-top:10px}
+
+  /* compare */
+  .compare{margin-top:28px;border:1px solid var(--line);border-radius:18px;overflow:hidden;text-align:left;font-size:14px}
+  .crow{display:grid;grid-template-columns:76px 1fr 1fr;border-top:1px solid var(--line)}
+  .crow:first-child{border-top:none}
+  .crow > div{padding:14px 10px;line-height:1.45}
+  .crow .k{font-weight:800;color:var(--sub);background:var(--bg2);font-size:13px;display:flex;align-items:center}
+  .crow .o{color:var(--sub)}
+  .crow .o::before{content:"✕ ";color:var(--red);font-weight:900}
+  .crow .v{background:rgba(212,242,90,.08);color:var(--text);font-weight:700}
+  .crow .v::before{content:"✓ ";color:var(--lime);font-weight:900}
+  .crow.head > div{font-weight:800;font-size:14px;padding:16px 10px}
+  .crow.head .o,.crow.head .v{text-align:center}
+  .crow.head .o::before,.crow.head .v::before{content:none}
+  .crow.head .v{background:var(--lime);color:var(--ink)}
 
   /* apply form */
   .form-box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px;margin-top:28px;text-align:left}
@@ -244,6 +263,11 @@
     .process{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px;margin:40px auto 0}
     .process li{flex-direction:column;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 16px}
     .offer{max-width:640px;margin:32px auto 0;padding:36px 32px}
+    .compare{max-width:880px;margin:36px auto 0;font-size:16px}
+    .crow{grid-template-columns:160px 1fr 1fr}
+    .crow > div{padding:18px 20px}
+    .crow .k{font-size:15px}
+    .crow.head > div{font-size:16px}
     .form-box{max-width:680px;margin:32px auto 0;padding:40px}
     .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
     .faq-grid details{margin-top:0}
@@ -329,173 +353,8 @@
   </div>
 </section>
 
-<!-- ================= S4. 대안 비교 ================= -->
+<!-- ================= S3-1. 후기 ================= -->
 <section class="alt">
-  <div class="wrap">
-    <span class="eyebrow">WHY NOT</span>
-    <h2 class="mid reveal">이렇게 해보셨나요?</h2>
-    <div class="mt24 alt-grid">
-      <div class="alt-card reveal"><div class="x">✕</div><div><h3>유튜브 영상</h3><p>짧은 영상이라 중요한 부분이 빠져 있고,<br>막혀도 물어볼 곳이 없습니다</p></div></div>
-      <div class="alt-card reveal"><div class="x">✕</div><div><h3>책·전자책</h3><p>읽을 땐 알 것 같은데,<br>책을 덮으면 다시 막막합니다</p></div></div>
-      <div class="alt-card reveal"><div class="x">✕</div><div><h3>다른 강의</h3><p>너무 기초만 다루다 끝나서,<br>결국 내 것은 못 만들었습니다</p></div></div>
-    </div>
-    <p class="punch reveal">보기만 해서는,<br><span class="lime">만들 수 없습니다.</span></p>
-  </div>
-</section>
-
-<!-- ================= S5. 솔루션 ================= -->
-<section>
-  <div class="wrap">
-    <p class="sub reveal">그래서 만들었습니다</p>
-    <h2 class="big reveal">바이브리치<br><span class="lime">바이브코딩 클래스</span></h2>
-    <p class="lead mt16 reveal">보고 끝나는 강의가 아니라,<br><b>직접 만들고 끝나는 강의</b></p>
-    <div class="trio">
-      <div class="feat reveal"><div class="num">POINT 01</div><h3>1주차 완전 무료</h3><p>첫 주에 홍보용 랜딩페이지를 직접 만들어 보고, 계속할지 그때 결정하세요</p></div>
-      <div class="feat reveal"><div class="num">POINT 02</div><h3>왕초보도 이해되는 친절함</h3><p>어려운 말은 빼고, 쉬운 말과 예시로 하나씩 설명합니다</p></div>
-      <div class="feat reveal"><div class="num">POINT 03</div><h3>라이브로 한 분 한 분</h3><p>혼자 영상 보고 따라 하는 게 아니라, 라이브에서 막힌 곳을 세심하게 봐드립니다</p></div>
-      <div class="feat reveal"><div class="num">POINT 04</div><h3>거품 없는 커리큘럼</h3><p>쓸데없는 이론은 빼고, 만드는 데 꼭 필요한 것만 담았습니다</p></div>
-      <div class="feat reveal"><div class="num">POINT 05</div><h3>끝나고도 혼자 만드는 힘</h3><p>강의가 끝난 뒤에도 내가 생각한 대로 직접 만들 수 있게 해드립니다</p></div>
-    </div>
-    <p class="lead mt40 reveal">코딩을 외우지 않습니다.<br><b class="lime">Claude Code에게 일을 시키는 법</b>을 배웁니다.</p>
-  </div>
-</section>
-
-<!-- ================= S6. 활용 사례 + 결과물 ================= -->
-<section class="alt" id="cases">
-  <div class="wrap">
-    <span class="eyebrow">FOR MY BUSINESS</span>
-    <h2 class="mid reveal">4주 동안<br>이런 걸 직접 만들어요</h2>
-
-    <div class="case-grid">
-    <div class="case reveal">
-      <div class="ic">📣</div>
-      <h3>홍보용 랜딩페이지</h3>
-      <p class="desc">내 가게·서비스를 한 페이지로 소개하는 홍보 페이지. 1주차에 바로 만들어요.</p>
-      <div class="steps"><span>외주 비용 없이</span><span>수정도 내가 직접</span><span class="good">✨ 브랜딩</span></div>
-    </div>
-    <div class="case reveal">
-      <div class="ic">📋</div>
-      <h3>신청 접수 페이지</h3>
-      <p class="desc">손님이 신청·문의를 남기면 구글시트에 자동으로 쌓이는 페이지. 내 고객 명단이 생겨요.</p>
-      <div class="steps"><span>전화 응대 줄이기</span><span>자동 정리</span><span class="good">📋 고객 DB 확보</span></div>
-    </div>
-    <div class="case reveal">
-      <div class="ic">🤖</div>
-      <h3>무료 AI 진단 페이지</h3>
-      <p class="desc">손님이 몇 가지 질문에 답하면 AI가 맞춤 진단 결과를 알려주는 페이지. 내 사업에 맞게 만들어요.</p>
-      <div class="steps"><span>손님 끌어오기</span><span>맞춤 추천</span><span class="good">🎯 상담 연결</span></div>
-    </div>
-    <div class="case reveal">
-      <div class="ic">💳</div>
-      <h3>결제되는 판매 페이지</h3>
-      <p class="desc">내 상품·서비스를 소개하고, 그 자리에서 바로 결제까지 받는 페이지</p>
-      <div class="steps"><span>상품 소개</span><span>결제 연결</span><span class="good">💸 바로 판매</span></div>
-    </div>
-    <div class="case reveal">
-      <div class="ic">🔎</div>
-      <h3>자료수집 자동화</h3>
-      <p class="desc">Aside·Ego Lite 같은 AI 브라우저가 경쟁 가게 가격, 후기, 트렌드 자료를 대신 모아줘요.</p>
-      <div class="steps"><span>반복 검색 끝</span><span>자동 정리</span><span class="good">⏰ 시간 절약</span></div>
-    </div>
-    </div>
-    <p class="sub mt16 reveal">내 사업에 맞는 주제로 바꿔서 만들어요.</p>
-
-    <h2 class="mid mt56 reveal">4주가 끝나면<br><span class="lime">이 2가지</span>가 남습니다</h2>
-    <div class="result">
-      <div class="reveal"><span class="n">결과물 01</span><strong>고객 DB를 모으는<br>랜딩페이지</strong><p>신청 접수가 되고<br>구글시트에 자동 저장</p></div>
-      <div class="reveal"><span class="n">결과물 02</span><strong>내 상품을 파는<br>결제 페이지</strong><p>상품 소개부터<br>결제까지 한 번에</p></div>
-    </div>
-    <p class="punch reveal">그리고 가장 중요한 것,<br><span class="lime">혼자서도 또 만들 수 있는 힘</span></p>
-  </div>
-</section>
-
-<!-- ================= S7. 커리큘럼 ================= -->
-<section id="curriculum">
-  <div class="wrap">
-    <span class="eyebrow">CURRICULUM</span>
-    <h2 class="mid reveal">딱 필요한 것만 담은<br>4주 커리큘럼</h2>
-    <p class="sub mt16 reveal">매주 라이브로 함께 따라 하며 진행합니다 · 1주차는 무료</p>
-
-    <div class="curri">
-    <div class="week key reveal">
-      <div class="week-head"><span class="wk">WEEK 1</span><span class="tag free">무료</span></div>
-      <h3>홍보용 랜딩페이지 만들기</h3>
-      <ul>
-        <li>바이브코딩이 뭔지 쉽게 이해하기</li>
-        <li><b>Claude Code 설치·세팅</b> 같이 하기</li>
-        <li>AI에게 원하는 걸 정확히 말하는 법</li>
-        <li>내 가게·서비스를 알리는 <b>홍보용 랜딩페이지 1개 완성</b></li>
-      </ul>
-      <div class="out">인터넷 주소가 있는 나만의 홍보 페이지</div>
-    </div>
-
-    <div class="week reveal">
-      <div class="week-head"><span class="wk">WEEK 2</span><span class="tag hl">결과물 01 완성</span></div>
-      <h3>신청 접수 받는 페이지 만들기</h3>
-      <ul>
-        <li>랜딩페이지에 <b>신청·문의 폼</b> 붙이기</li>
-        <li>신청 내용이 <b>구글시트에 자동 저장</b>되게 연결하기</li>
-        <li>내 고객 명단(고객 DB) 모으고 관리하는 법</li>
-      </ul>
-      <div class="out">고객 DB를 모으는 신청 접수 랜딩페이지</div>
-    </div>
-
-    <div class="week reveal">
-      <div class="week-head"><span class="wk">WEEK 3</span><span class="tag">AI 진단</span></div>
-      <h3>내 사업에 맞는 무료 AI 진단 만들기</h3>
-      <ul>
-        <li>손님이 답하면 AI가 결과를 알려주는 <b>무료 AI 진단</b> 기능 붙이기</li>
-        <li>예시: 미용실은 "어울리는 스타일 진단", 카페는 "취향 원두 추천", 학원은 "공부 유형 진단"</li>
-        <li>진단 결과에서 <b>신청·상담으로 이어지게</b> 연결하기</li>
-      </ul>
-      <div class="out">손님을 끌어오는 내 사업 맞춤 AI 진단 페이지</div>
-    </div>
-
-    <div class="week reveal">
-      <div class="week-head"><span class="wk">WEEK 4</span><span class="tag hl">결과물 02 완성</span></div>
-      <h3>결제 붙여서 파는 페이지 만들기</h3>
-      <ul>
-        <li>내 상품·서비스를 소개하는 <b>판매 페이지</b> 만들기</li>
-        <li>판매 페이지에 <b>결제 기능</b> 붙이기</li>
-        <li><b>Aside·Ego Lite 같은 AI 브라우저</b>로 자료수집 자동화하기</li>
-        <li>경쟁 가게 가격·후기, 트렌드 자료를 AI가 대신 모아오게 만들기</li>
-        <li>막혔을 때 AI와 함께 <b>스스로 해결하는 법</b></li>
-      </ul>
-      <div class="out">내 상품을 파는 결제 페이지 + 자료수집 자동화</div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= S8. 강사 ================= -->
-<section class="alt">
-  <div class="wrap">
-    <span class="eyebrow">INSTRUCTOR</span>
-    <h2 class="mid reveal">누가 가르치나요?</h2>
-    <div class="profile reveal">
-      <div class="avatar"><img src="assets/instructor.jpg" alt="바이브리치 김민형"></div>
-      <h3 class="mt16" style="font-size:24px">바이브리치 <span class="sub" style="font-size:16px">김민형</span></h3>
-      <ul class="creds">
-        <li>8년차 개발자 (기업 전산팀 출신)</li>
-        <li>대학교 인공지능학과 교수</li>
-        <li>SAP ERP 취업 교육기업 아이티리치 대표</li>
-        <li>대학 강연·세미나 다수</li>
-      </ul>
-      <div class="book">
-        <div class="book-cover"><img src="assets/book.jpg" alt="전공자도 비전공자도 IT업계에서 억대연봉 만들기 표지"></div>
-        <p><strong>『전공자도 비전공자도<br>IT업계에서 억대연봉 만들기』</strong>저자 · 라온북</p>
-      </div>
-      <div class="quote">
-        어렵게 가르치지 않습니다.<br>
-        처음 해보는 분도 끝까지 따라올 수 있게,<br>
-        <b class="lime">라이브에서 한 분 한 분 화면을 함께 보며</b> 도와드립니다.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= S9. 후기 ================= -->
-<section>
   <div class="wrap">
     <span class="eyebrow">REVIEWS</span>
     <h2 class="mid reveal">바이브리치 강의를<br>먼저 들은 분들의 후기</h2>
@@ -554,6 +413,171 @@
   </div>
 </section>
 
+<!-- ================= S4. 대안 비교 ================= -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">WHY NOT</span>
+    <h2 class="mid reveal">이렇게 해보셨나요?</h2>
+    <div class="mt24 alt-grid">
+      <div class="alt-card reveal"><div class="x">✕</div><div><h3>유튜브 영상</h3><p>짧은 영상이라 중요한 부분이 빠져 있고,<br>막혀도 물어볼 곳이 없습니다</p></div></div>
+      <div class="alt-card reveal"><div class="x">✕</div><div><h3>책·전자책</h3><p>읽을 땐 알 것 같은데,<br>책을 덮으면 다시 막막합니다</p></div></div>
+      <div class="alt-card reveal"><div class="x">✕</div><div><h3>다른 강의</h3><p>너무 기초만 다루다 끝나서,<br>결국 내 것은 못 만들었습니다</p></div></div>
+    </div>
+    <p class="punch reveal">보기만 해서는,<br><span class="lime">만들 수 없습니다.</span></p>
+  </div>
+</section>
+
+<!-- ================= S5. 솔루션 ================= -->
+<section class="alt">
+  <div class="wrap">
+    <p class="sub reveal">그래서 만들었습니다</p>
+    <h2 class="big reveal">바이브리치<br><span class="lime">바이브코딩 클래스</span></h2>
+    <p class="lead mt16 reveal">보고 끝나는 강의가 아니라,<br><b>직접 만들고 끝나는 강의</b></p>
+    <div class="trio">
+      <div class="feat reveal"><div class="num">POINT 01</div><h3>1주차 완전 무료</h3><p>첫 주에 홍보용 랜딩페이지를 직접 만들어 보고, 계속할지 그때 결정하세요</p></div>
+      <div class="feat reveal"><div class="num">POINT 02</div><h3>왕초보도 이해되는 친절함</h3><p>어려운 말은 빼고, 쉬운 말과 예시로 하나씩 설명합니다</p></div>
+      <div class="feat reveal"><div class="num">POINT 03</div><h3>라이브로 한 분 한 분</h3><p>혼자 영상 보고 따라 하는 게 아니라, 라이브에서 막힌 곳을 세심하게 봐드립니다</p></div>
+      <div class="feat reveal"><div class="num">POINT 04</div><h3>거품 없는 커리큘럼</h3><p>쓸데없는 이론은 빼고, 만드는 데 꼭 필요한 것만 담았습니다</p></div>
+      <div class="feat reveal"><div class="num">POINT 05</div><h3>끝나고도 혼자 만드는 힘</h3><p>강의가 끝난 뒤에도 내가 생각한 대로 직접 만들 수 있게 해드립니다</p></div>
+    </div>
+    <p class="lead mt40 reveal">코딩을 외우지 않습니다.<br><b class="lime">Claude Code에게 일을 시키는 법</b>을 배웁니다.</p>
+  </div>
+</section>
+
+<!-- ================= S6. 활용 사례 + 결과물 ================= -->
+<section id="cases">
+  <div class="wrap">
+    <span class="eyebrow">FOR MY BUSINESS</span>
+    <h2 class="mid reveal">4주 동안<br>이런 걸 직접 만들어요</h2>
+
+    <div class="case-grid">
+    <div class="case reveal">
+      <div class="ic">📣</div>
+      <h3>홍보용 랜딩페이지</h3>
+      <p class="desc">내 가게·서비스를 한 페이지로 소개하는 홍보 페이지. 1주차에 바로 만들어요.</p>
+      <div class="steps"><span>외주 비용 없이</span><span>수정도 내가 직접</span><span class="good">✨ 브랜딩</span></div>
+    </div>
+    <div class="case reveal">
+      <div class="ic">📋</div>
+      <h3>신청 접수 페이지</h3>
+      <p class="desc">손님이 신청·문의를 남기면 구글시트에 자동으로 쌓이는 페이지. 내 고객 명단이 생겨요.</p>
+      <div class="steps"><span>전화 응대 줄이기</span><span>자동 정리</span><span class="good">📋 고객 DB 확보</span></div>
+    </div>
+    <div class="case reveal">
+      <div class="ic">🤖</div>
+      <h3>무료 AI 진단 페이지</h3>
+      <p class="desc">손님이 몇 가지 질문에 답하면 AI가 맞춤 진단 결과를 알려주는 페이지. 내 사업에 맞게 만들어요.</p>
+      <div class="steps"><span>손님 끌어오기</span><span>맞춤 추천</span><span class="good">🎯 상담 연결</span></div>
+    </div>
+    <div class="case reveal">
+      <div class="ic">💳</div>
+      <h3>결제되는 판매 페이지</h3>
+      <p class="desc">내 상품·서비스를 소개하고, 그 자리에서 바로 결제까지 받는 페이지</p>
+      <div class="steps"><span>상품 소개</span><span>결제 연결</span><span class="good">💸 바로 판매</span></div>
+    </div>
+    <div class="case reveal">
+      <div class="ic">🔎</div>
+      <h3>자료수집 자동화</h3>
+      <p class="desc">Aside·Ego Lite 같은 AI 브라우저가 경쟁 가게 가격, 후기, 트렌드 자료를 대신 모아줘요.</p>
+      <div class="steps"><span>반복 검색 끝</span><span>자동 정리</span><span class="good">⏰ 시간 절약</span></div>
+    </div>
+    </div>
+    <p class="sub mt16 reveal">내 사업에 맞는 주제로 바꿔서 만들어요.</p>
+
+    <h2 class="mid mt56 reveal">4주가 끝나면<br><span class="lime">이 2가지</span>가 남습니다</h2>
+    <div class="result">
+      <div class="reveal"><span class="n">결과물 01</span><strong>고객 DB를 모으는<br>랜딩페이지</strong><p>신청 접수가 되고<br>구글시트에 자동 저장</p></div>
+      <div class="reveal"><span class="n">결과물 02</span><strong>내 상품을 파는<br>결제 페이지</strong><p>상품 소개부터<br>결제까지 한 번에</p></div>
+    </div>
+    <p class="punch reveal">그리고 가장 중요한 것,<br><span class="lime">혼자서도 또 만들 수 있는 힘</span></p>
+  </div>
+</section>
+
+<!-- ================= S7. 커리큘럼 ================= -->
+<section class="alt" id="curriculum">
+  <div class="wrap">
+    <span class="eyebrow">CURRICULUM</span>
+    <h2 class="mid reveal">딱 필요한 것만 담은<br>4주 커리큘럼</h2>
+    <p class="sub mt16 reveal">매주 라이브로 함께 따라 하며 진행합니다 · 1주차는 무료</p>
+
+    <div class="curri">
+    <div class="week key reveal">
+      <div class="week-head"><span class="wk">WEEK 1</span><span class="tag free">무료</span></div>
+      <h3>홍보용 랜딩페이지 만들기</h3>
+      <ul>
+        <li>바이브코딩이 뭔지 쉽게 이해하기</li>
+        <li><b>Claude Code 설치·세팅</b> 같이 하기</li>
+        <li>AI에게 원하는 걸 정확히 말하는 법</li>
+        <li>내 가게·서비스를 알리는 <b>홍보용 랜딩페이지 1개 완성</b></li>
+      </ul>
+      <div class="out">인터넷 주소가 있는 나만의 홍보 페이지</div>
+    </div>
+
+    <div class="week reveal">
+      <div class="week-head"><span class="wk">WEEK 2</span><span class="tag hl">결과물 01 완성</span></div>
+      <h3>신청 접수 받는 페이지 만들기</h3>
+      <ul>
+        <li>랜딩페이지에 <b>신청·문의 폼</b> 붙이기</li>
+        <li>신청 내용이 <b>구글시트에 자동 저장</b>되게 연결하기</li>
+        <li>내 고객 명단(고객 DB) 모으고 관리하는 법</li>
+      </ul>
+      <div class="out">고객 DB를 모으는 신청 접수 랜딩페이지</div>
+    </div>
+
+    <div class="week reveal">
+      <div class="week-head"><span class="wk">WEEK 3</span><span class="tag">AI 진단</span></div>
+      <h3>내 사업에 맞는 무료 AI 진단 만들기</h3>
+      <ul>
+        <li>손님이 답하면 AI가 결과를 알려주는 <b>무료 AI 진단</b> 기능 붙이기</li>
+        <li>예시: 미용실은 "어울리는 스타일 진단", 카페는 "취향 원두 추천", 학원은 "공부 유형 진단"</li>
+        <li>진단 결과에서 <b>신청·상담으로 이어지게</b> 연결하기</li>
+      </ul>
+      <div class="out">손님을 끌어오는 내 사업 맞춤 AI 진단 페이지</div>
+    </div>
+
+    <div class="week reveal">
+      <div class="week-head"><span class="wk">WEEK 4</span><span class="tag hl">결과물 02 완성</span></div>
+      <h3>결제 붙여서 파는 페이지 만들기</h3>
+      <ul>
+        <li>내 상품·서비스를 소개하는 <b>판매 페이지</b> 만들기</li>
+        <li>판매 페이지에 <b>결제 기능</b> 붙이기</li>
+        <li><b>Aside·Ego Lite 같은 AI 브라우저</b>로 자료수집 자동화하기</li>
+        <li>경쟁 가게 가격·후기, 트렌드 자료를 AI가 대신 모아오게 만들기</li>
+        <li>막혔을 때 AI와 함께 <b>스스로 해결하는 법</b></li>
+      </ul>
+      <div class="out">내 상품을 파는 결제 페이지 + 자료수집 자동화</div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S8. 강사 ================= -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">INSTRUCTOR</span>
+    <h2 class="mid reveal">누가 가르치나요?</h2>
+    <div class="profile reveal">
+      <div class="avatar"><img src="assets/instructor.jpg" alt="바이브리치 김민형"></div>
+      <h3 class="mt16" style="font-size:24px">바이브리치 <span class="sub" style="font-size:16px">김민형</span></h3>
+      <ul class="creds">
+        <li>8년차 개발자 (기업 전산팀 출신)</li>
+        <li>대학교 인공지능학과 교수</li>
+        <li>SAP ERP 취업 교육기업 아이티리치 대표</li>
+        <li>대학 강연·세미나 다수</li>
+      </ul>
+      <div class="book">
+        <div class="book-cover"><img src="assets/book.jpg" alt="전공자도 비전공자도 IT업계에서 억대연봉 만들기 표지"></div>
+        <p><strong>『전공자도 비전공자도<br>IT업계에서 억대연봉 만들기』</strong>저자 · 라온북</p>
+      </div>
+      <div class="quote">
+        어렵게 가르치지 않습니다.<br>
+        처음 해보는 분도 끝까지 따라올 수 있게,<br>
+        <b class="lime">라이브에서 한 분 한 분 화면을 함께 보며</b> 도와드립니다.
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= S10. 진행 방식 ================= -->
 <section class="alt">
   <div class="wrap">
@@ -572,18 +596,30 @@
   </div>
 </section>
 
-<!-- ================= S11. 오퍼 ================= -->
+<!-- ================= S11. 비교 + 가격 ================= -->
 <section>
   <div class="wrap">
-    <span class="eyebrow">OFFER</span>
-    <h2 class="mid reveal">지금 신청하면</h2>
+    <span class="eyebrow">COMPARE</span>
+    <h2 class="mid reveal">다른 강의와<br>비교해 보세요</h2>
+    <p class="sub mt16 reveal">가격만 싼 강의가 아닙니다. 퀄리티가 다릅니다.</p>
+    <div class="compare reveal">
+      <div class="crow head"><div class="k">비교</div><div class="o">흔한 강의·영상</div><div class="v">바이브리치</div></div>
+      <div class="crow"><div class="k">수업 방식</div><div class="o">녹화 영상 혼자 보기</div><div class="v">실시간 라이브로 함께</div></div>
+      <div class="crow"><div class="k">막혔을 때</div><div class="o">댓글 남기고 답 기다리기</div><div class="v">그 자리에서 한 분 한 분 봐드림</div></div>
+      <div class="crow"><div class="k">배우는 범위</div><div class="o">기초 따라 하기에서 끝</div><div class="v">고객 DB·AI 진단·결제·자동화까지</div></div>
+      <div class="crow"><div class="k">결과물</div><div class="o">예제 하나 따라 만들기</div><div class="v">내 사업 홈페이지 2개 완성</div></div>
+      <div class="crow"><div class="k">끝난 뒤</div><div class="o">다시 막막함</div><div class="v">혼자서도 만드는 힘</div></div>
+    </div>
+
+    <span class="eyebrow mt56" style="display:block">PRICE</span>
+    <h2 class="mid reveal">지금이 가장<br><span class="lime">저렴합니다</span></h2>
     <div class="offer reveal">
       <div class="row"><span>1주차 라이브</span><b class="free-price">0원</b></div>
-      <div class="row"><span>1주차 결과물</span><b>홍보용 랜딩페이지</b></div>
-      <div class="row"><span>2~4주차</span><b class="later">1주차 종료 후 개별 안내</b></div>
-      <div class="bonus">🎁 카드 등록 없이 <b>바로 참여</b>할 수 있어요.</div>
+      <div class="row"><span>2~4주차 심화<br><small style="color:#6b7280;font-weight:500">홈페이지 2개 완성까지</small></span><div class="price-box"><b>10만원</b><small>지금이 가장 싼 가격</small></div></div>
+      <div class="bonus">🎁 1주차는 카드 등록 없이 <b>무료로 바로 참여</b>할 수 있어요.</div>
+      <div class="bonus up">📈 이 가격은 오래가지 않아요. 수강생이 늘어날수록 <b>가격이 인상될 예정</b>입니다.</div>
     </div>
-    <p class="zero reveal">1주차만 듣고 그만둬도 됩니다.<br><span class="lime">부담은 0입니다.</span></p>
+    <p class="zero reveal">1주차는 무료로 먼저 들어보고,<br><span class="lime">마음에 들 때만 결정하세요.</span></p>
   </div>
 </section>
 
@@ -664,6 +700,7 @@
       <details><summary>결제 기능도 제가 붙일 수 있나요?</summary><p>네. 4주차 라이브에서 판매 페이지를 만들고 결제 기능을 함께 붙입니다. 처음 해보는 분도 따라올 수 있게 한 단계씩 진행해요.</p></details>
       <details><summary>무료 AI 진단은 어떤 건가요?</summary><p>손님이 몇 가지 질문에 답하면 AI가 맞춤 결과를 알려주는 기능이에요. 미용실이면 어울리는 스타일, 카페면 취향 원두처럼 내 사업에 맞게 만들어요. 무료 진단으로 손님을 모으고, 상담·신청으로 이어지게 연결합니다.</p></details>
       <details><summary>AI 브라우저(Aside·Ego Lite)는 뭔가요?</summary><p>AI가 들어 있는 인터넷 창이에요. "이 자료 좀 모아줘"라고 말하면, 비서처럼 여러 사이트를 돌며 자료를 찾아 정리해줘요. 4주차에 반복되는 검색·정리 일을 자동으로 맡기는 법을 배웁니다.</p></details>
+      <details><summary>가격은 얼마인가요?</summary><p>1주차는 무료이고, 2~4주차는 10만원이에요. 지금이 가장 저렴한 가격이며, 수강생이 늘어날수록 가격을 올릴 예정입니다.</p></details>
       <details><summary>1주차 이후 꼭 계속 들어야 하나요?</summary><p>아니요. 1주차만 들어도 괜찮아요. 홍보용 랜딩페이지를 직접 만들어 보고, 마음에 들면 그때 2~4주차 참여를 결정하세요.</p></details>
     </div>
   </div>
